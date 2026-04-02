@@ -3,114 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>MARS: ABOUT US </title>
+    <title>About Us — MARS</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <style>
+        /* ---- About Page Styles ---- */
+        #about-head {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            padding: 80px;
+            background: var(--bg-color);
+        }
+        #about-head img {
+            width: 45%;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: var(--shadow-md);
+            flex-shrink: 0;
+        }
+        #about-head .about-text h2 {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        #about-head .about-text h2 span {
+            color: var(--accent-color);
+        }
+        #about-head .about-text p {
+            color: var(--text-light);
+            font-size: 16px;
+            line-height: 1.8;
+            margin: 0 0 20px;
+        }
+        #about-head .about-text .about-tag {
+            display: inline-block;
+            padding: 8px 18px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+        }
+
+        /* ---- Values Section ---- */
+        #feature {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 80px;
+            background: var(--bg-alt);
+        }
+        .values-heading {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .values-heading h2 {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        .values-heading p {
+            font-size: 15px;
+            color: var(--text-light);
+            margin: 8px 0 0;
+        }
+        .fe-box {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            width: 220px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+        .fe-box:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+        }
+        .fe-box img {
+            width: 70px;
+            margin-bottom: 15px;
+        }
+        .fe-box h6 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 900px) {
+            #about-head { flex-direction: column; padding: 40px 30px; }
+            #about-head img { width: 100%; }
+            #feature { padding: 40px 30px; }
+        }
+    </style>
 </head>
-
 <body>
-    <script src="script.js"></script>
+    <!-- Announcement Bar -->
+    <div id="announcement-bar">🔥 <span>SINGLES' DAY DEALS</span> — Save up to 20% on all orders &nbsp;|&nbsp; Free shipping on orders over EGP 500</div>
 
-<section id="header">
-    
-        <a href="index.html" class="logo-link"><img src="img/logo.png" width="90" class="logo" alt=""></a>
-        
+    <section id="header">
+        <a href="index.html" class="logo-link"><img src="img/logo.png" width="90" class="logo" alt="MARS Logo"></a>
         <div>
             <ul id="navbar">
-    
                 <li><a href="index.html">HOME</a></li>
-                
                 <li><a href="men.html">MEN</a></li>
                 <li><a href="women.html">WOMEN</a></li>
-                <li><a href="cart.html"><img src="img/shopping-bag-3049.png" width="25" alt=""></i></a></li>
-            
+                <li id="lg-bag"><a href="cart.html"><img src="img/shopping-bag-3049.png" width="25" alt="Cart"></a></li>
+                <div id="close" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
                 <div id="Account">
                     <ul>
                         <li><a href="createNEW.html">Create An Account</a></li>
                         <li><a href="signin.html">Sign In</a></li>
                     </ul>
-                </div> 
-    
+                </div>
             </ul>
         </div>
-        
         <div id="mobil">
             <a href="cart.html"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
             <i id="bar" class="fas fa-outdent" onclick="toggleMenu()"></i>
-          </div>
-        
-</section>
-   
-<section id="page-header" class="about-header">
-      
-        <h2>#KnowUs</h2>
+        </div>
+    </section>
 
-        <p>(Thank You For Your Interest)</p>
-        
-</section>
+    <section id="page-header">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="sep">›</span>
+            <span>About</span>
+        </div>
+        <h1>Who We Are</h1>
+        <p>Bold fashion. Timeless design. Made for the daring.</p>
+    </section>
 
-<section id="about-head" class="section-p1">
-    <img src="img/about/a6.jpg" alt="">
-    <div>
-        <h2>Who Are We?</h2>
-        <p>MARS is an emerging clothing brand that seeks to revolutionize the fashion industry by blending modern aesthetics with timeless design. To support the brand's vision and engage with a global audience, the creation of a visually appealing, user-friendly, and functional website is essential. This proposal outlines the website's objectives, features, and the development process to ensure MARS has a strong digital presence.</p>
-        <br>
-        <marquee bgcolor="#ccc" loop="-1" scrollamount="5" width="100%">Creat stunning with as much or as little control as you like thanks to choice of basic and creative modes 
-        </marquee>
-    </div>
-</section>
+    <section id="about-head">
+        <img src="img/about/a6.jpg" alt="About MARS Brand">
+        <div class="about-text">
+            <h2>Fashion for the <span>bold.</span><br>Built for everyone.</h2>
+            <p>MARS is an emerging clothing brand that seeks to revolutionize the fashion industry by blending modern aesthetics with timeless design. We believe that fashion is personal — an extension of identity, not just clothing.</p>
+            <p>Our collections are crafted to empower both men and women to express themselves authentically. From winter essentials to statement pieces, every item in the MARS lineup is built with quality and intention.</p>
+            <span class="about-tag">🌍 Est. Cairo, Egypt</span>
+        </div>
+    </section>
 
-<section id="feature" class="section-p1"> 
-    <div class="fe-box">
-        <img src="img/feature/s1.png" alt="">
-        
-    </div>
+    <section id="feature">
+        <div class="values-heading">
+            <h2>Why MARS?</h2>
+            <p>Everything we do is rooted in quality, creativity, and community.</p>
+        </div>
 
-    <div class="fe-box">
-        <img src="img/feature/s2.png" alt="">
-        
-    </div>
+        <div class="fe-box">
+            <img src="img/feature/s1.png" alt="Free Shipping">
+            <h6>Free Shipping</h6>
+        </div>
+        <div class="fe-box">
+            <img src="img/feature/s2.png" alt="Online Order">
+            <h6>Online Order</h6>
+        </div>
+        <div class="fe-box">
+            <img src="img/feature/s3.png" alt="Save Money">
+            <h6>Save Money</h6>
+        </div>
+        <div class="fe-box">
+            <img src="img/feature/s4.png" alt="Promotions">
+            <h6>Promotions</h6>
+        </div>
+    </section>
 
-    <div class="fe-box">
-        <img src="img/feature/s3.png" alt="">
-        
-    </div>
+    <footer class="section-p1">
+        <div class="footer-col">
+            <img class="logo" src="img/logo.png" width="65" alt="Company Logo">
+            <p style="font-size:13px; margin-top:15px;">MARS &mdash; Fashion for the bold.</p>
+        </div>
+        <div class="footer-col">
+            <h4>About Us</h4>
+            <ul>
+                <li><a href="about.html">Who We Are</a></li>
+                <li><a href="contact.html">Contact Information</a></li>
+                <li><a href="#">Shipping &amp; Delivery</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Customer Service</h4>
+            <ul>
+                <li><a href="signin.html">Login to Account</a></li>
+                <li><a href="cart.html">Shopping Cart</a></li>
+                <li><a href="#">Wishlist</a></li>
+                <li><a href="#">Order Tracking</a></li>
+            </ul>
+        </div>
+        <div class="copyright">&copy; 2025 MARS. All rights reserved.</div>
+    </footer>
 
-    <div class="fe-box">
-        <img src="img/feature/s4.png" alt="">
-        
-    </div>
-   </section>
- <hr>
-<footer class="section-p1">
-    <div class="footer-col">
-        <img class="logo" src="img/logo.png" width="65" alt="Company Logo">
-       
-    </div>
-
-    <div class="footer-col">
-        <h4>About Us</h4>
-        <ul>
-            <li><a href="about.html">Who We Are</a></li>
-            <li><a href="contact.html">Contact Information</a></li>
-            <li><a href="#">Shipping & Delivery</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms & Conditions</a></li>
-        </ul>
-    </div>
-
-    <div class="footer-col">
-        <h4>Customer Service</h4>
-        <ul>
-            <li><a href="signin.html">Login to Account</a></li>
-            <li><a href="cart.html">Shopping Cart</a></li>
-            <li><a href="#">Wishlist</a></li>
-            <li><a href="#">Order Tracking</a></li>
-        </ul>
-    </div>
-</footer>
-
- 
+<script src="script.js"></script>
 </body>
 </html>
