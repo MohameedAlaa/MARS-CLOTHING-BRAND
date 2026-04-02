@@ -3,108 +3,350 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MARS : CONTACT US </title>
+    <title>Contact Us — MARS</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="img/logo.png">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <style>
+        /* ---- Contact Layout ---- */
+        #contact-details {
+            display: flex;
+            gap: 60px;
+            padding: 80px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            background: var(--bg-color);
+        }
+
+        /* ---- Info Panel ---- */
+        .contact-info {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .contact-info .eyebrow {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+        }
+
+        .contact-info h2 {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .contact-info .sub {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .contact-item .icon-wrap {
+            width: 46px;
+            height: 46px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 16px;
+            color: var(--accent-color);
+            transition: all var(--transition);
+        }
+
+        .contact-item:hover .icon-wrap {
+            background: var(--accent-color);
+            color: #fff;
+            border-color: var(--accent-color);
+        }
+
+        .contact-item .info-text strong {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 3px;
+            letter-spacing: 0.3px;
+        }
+
+        .contact-item .info-text span {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* Map */
+        .contact-map {
+            margin-top: 36px;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-map iframe {
+            width: 100%;
+            height: 220px;
+            display: block;
+            border: 0;
+        }
+
+        /* ---- Message Form ---- */
+        .contact-form-panel {
+            flex: 1.2;
+            min-width: 300px;
+            background: var(--bg-alt);
+            border-radius: 20px;
+            padding: 44px;
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-form-panel .eyebrow {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .contact-form-panel h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .contact-form-panel .sub {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .cf-group {
+            margin-bottom: 18px;
+        }
+
+        .cf-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .cf-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-main);
+            margin-bottom: 7px;
+        }
+
+        .cf-group input,
+        .cf-group textarea {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: "Outfit", sans-serif;
+            color: var(--text-main);
+            background: var(--bg-color);
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .cf-group input:focus,
+        .cf-group textarea:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(239, 54, 54, 0.08);
+        }
+
+        .cf-group input::placeholder,
+        .cf-group textarea::placeholder {
+            color: #bbb;
+        }
+
+        .btn-send {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: "Outfit", sans-serif;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(239, 54, 54, 0.3);
+            margin-top: 8px;
+        }
+
+        .btn-send:hover {
+            background: var(--primary-color);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+            #contact-details { flex-direction: column; padding: 40px 30px; }
+            .contact-form-panel { padding: 30px 24px; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-    
+    <!-- Announcement Bar -->
+    <div id="announcement-bar">🔥 <span>SINGLES' DAY DEALS</span> — Save up to 20% on all orders &nbsp;|&nbsp; Free shipping on orders over EGP 500</div>
+
     <section id="header">
-    
-        <a href="index.html" class="logo-link"><img src="img/logo.png" width="90" class="logo" alt=""></a>
-        
+        <a href="index.html" class="logo-link"><img src="img/logo.png" width="90" class="logo" alt="MARS Logo"></a>
         <div>
             <ul id="navbar">
-    
                 <li><a href="index.html">HOME</a></li>
                 <li><a href="men.html">MEN</a></li>
                 <li><a href="women.html">WOMEN</a></li>
-                <li><a href="cart.html"><img src="img/shopping-bag-3049.png" width="25" alt=""></i></a></li>
-            
+                <li id="lg-bag"><a href="cart.html"><img src="img/shopping-bag-3049.png" width="25" alt="Cart"></a></li>
+                <div id="close" onclick="toggleMenu()"><i class="fas fa-times"></i></div>
                 <div id="Account">
                     <ul>
                         <li><a href="createNEW.html">Create An Account</a></li>
                         <li><a href="signin.html">Sign In</a></li>
                     </ul>
-                </div> 
-    
+                </div>
             </ul>
         </div>
-        
-       </section>
+        <div id="mobil">
+            <a href="cart.html"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+            <i id="bar" class="fas fa-outdent" onclick="toggleMenu()"></i>
+        </div>
+    </section>
 
-       <section id="page-header" class="contact-header">
-      
-        <h2>#Let's_Talk</h2>
+    <section id="page-header">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="sep">›</span>
+            <span>Contact</span>
+        </div>
+        <h1>Get In Touch</h1>
+        <p>We'd love to hear from you — reach out anytime.</p>
+    </section>
 
-        <p>LEAVE A MESSAGE, We love to hear from you</p>
-        
-</section>
+    <section id="contact-details">
 
-<section id="contact-details" class="section-p1">
+        <!-- Left: Info -->
+        <div class="contact-info">
+            <p class="eyebrow">Contact MARS</p>
+            <h2>Let's start a conversation.</h2>
+            <p class="sub">Have a question, a collaboration idea, or just want to say hi? Drop us a message — our team is ready to help.</p>
 
-<div class="details">
-    <span>GET IN TOUCH</span>
-    <h2>TO CONTACT WITH US :</h2>
-    
-    <div>
-        <li>
-         <i class="fal fa-map" ></i> 
-         <p><strong>Address:</strong>Cairo_Egypt</p>  
-        </li>
-        <li>
-            <i class="far fa-envelope"></i>
-            <p><strong>Email Address:</strong> contact@example.com</p>
-        </li>
-        <li>
-            <i class="fas fa-phone-alt"></i>
-            <p><strong>Phone:</strong> +20 164 843 76457</p>
-        </li>
-        <li>
-            <i class="far fa-clock"></i>
-            <p><strong>Business Hours:</strong> 10:00 AM - 12:00 PM, 7 Days a Week</p>
-        </li>
-    </div>
+            <div class="contact-item">
+                <div class="icon-wrap"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="info-text">
+                    <strong>Our Address</strong>
+                    <span>Cairo, Egypt</span>
+                </div>
+            </div>
 
-    <div class="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110502.61184962837!2d31.17606157200349!3d30.059611344072838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb296e8423bba!2sCairo%2C%20Cairo%20Governorate!5e0!3m2!1sen!2seg!4v1733763719322!5m2!1sen!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-<br><br><br> 
-</div>    
-</section>
+            <div class="contact-item">
+                <div class="icon-wrap"><i class="fas fa-envelope"></i></div>
+                <div class="info-text">
+                    <strong>Email Address</strong>
+                    <span>contact@marsclothing.eg</span>
+                </div>
+            </div>
 
-<section id="form-details">
-<form action="">
-<span>LEAVE A MESSAGE : </span>
-<h2>We love to hear from you</h2>
-<input type="text" placeholder="Your Name">
-<input type="text" placeholder="E-Mail">
-<input type="text" placeholder="Subject">
-<textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
-<button>Submit</button>
-</form>
+            <div class="contact-item">
+                <div class="icon-wrap"><i class="fas fa-phone-alt"></i></div>
+                <div class="info-text">
+                    <strong>Phone Number</strong>
+                    <span>+20 164 843 7645</span>
+                </div>
+            </div>
 
-</section>
-<br> 
-<hr> 
+            <div class="contact-item">
+                <div class="icon-wrap"><i class="fas fa-clock"></i></div>
+                <div class="info-text">
+                    <strong>Business Hours</strong>
+                    <span>Sun – Thu: 10:00 AM – 8:00 PM</span>
+                </div>
+            </div>
 
-       <footer class="section-p1">
+            <div class="contact-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110502.61184962837!2d31.17606157200349!3d30.059611344072838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb296e8423bba!2sCairo%2C%20Cairo%20Governorate!5e0!3m2!1sen!2seg!4v1733763719322!5m2!1sen!2seg" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="contact-form-panel">
+            <p class="eyebrow">Send a Message</p>
+            <h2>We love to hear from you.</h2>
+            <p class="sub">Fill in the form and we'll get back to you within 24 hours.</p>
+
+            <form action="">
+                <div class="form-row">
+                    <div class="cf-group">
+                        <label for="c-name">Your Name</label>
+                        <input type="text" id="c-name" placeholder="John Doe" required>
+                    </div>
+                    <div class="cf-group">
+                        <label for="c-email">Email Address</label>
+                        <input type="email" id="c-email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="cf-group full">
+                        <label for="c-subject">Subject</label>
+                        <input type="text" id="c-subject" placeholder="How can we help you?">
+                    </div>
+                    <div class="cf-group full">
+                        <label for="c-msg">Your Message</label>
+                        <textarea id="c-msg" rows="6" placeholder="Write your message here..."></textarea>
+                    </div>
+                    <div class="cf-group full">
+                        <button type="submit" class="btn-send">Send Message →</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </section>
+
+    <footer class="section-p1">
         <div class="footer-col">
             <img class="logo" src="img/logo.png" width="65" alt="Company Logo">
-           
+            <p style="font-size:13px; margin-top:15px;">MARS &mdash; Fashion for the bold.</p>
         </div>
-    
         <div class="footer-col">
             <h4>About Us</h4>
             <ul>
                 <li><a href="about.html">Who We Are</a></li>
                 <li><a href="contact.html">Contact Information</a></li>
-                <li><a href="#">Shipping & Delivery</a></li>
+                <li><a href="#">Shipping &amp; Delivery</a></li>
                 <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms & Conditions</a></li>
             </ul>
         </div>
-    
         <div class="footer-col">
             <h4>Customer Service</h4>
             <ul>
@@ -114,7 +356,9 @@
                 <li><a href="#">Order Tracking</a></li>
             </ul>
         </div>
+        <div class="copyright">&copy; 2025 MARS. All rights reserved.</div>
     </footer>
-    
+
+<script src="script.js"></script>
 </body>
 </html>
