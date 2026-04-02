@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account — MARS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <style>
+        body { padding-top: 0 !important; background: #fff; }
+
+        .auth-page {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ---- Left Panel ---- */
+        .auth-panel-left {
+            width: 38%;
+            background: var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-panel-left::before {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            opacity: 0.08;
+        }
+
+        .auth-panel-left::after {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 280px;
+            height: 280px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            opacity: 0.06;
+        }
+
+        .auth-brand {
+            position: relative;
+            z-index: 2;
+        }
+
+        .auth-brand .logo {
+            width: 80px;
+        }
+
+        .auth-quote {
+            position: relative;
+            z-index: 2;
+        }
+
+        .auth-quote h2 {
+            color: #fff;
+            font-size: 36px;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .auth-quote h2 span {
+            color: var(--accent-color);
+        }
+
+        .auth-quote p {
+            color: rgba(255,255,255,0.5);
+            font-size: 15px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .auth-steps {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .auth-step {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .step-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(239,54,54,0.15);
+            border: 1px solid rgba(239,54,54,0.4);
+            color: var(--accent-color);
+            font-size: 13px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            color: rgba(255,255,255,0.6);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .auth-footer-text {
+            color: rgba(255,255,255,0.2);
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ---- Right Panel ---- */
+        .auth-panel-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 70px;
+            background: #fafafa;
+            overflow-y: auto;
+        }
+
+        .auth-form-box {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .auth-form-box .form-eyebrow {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .auth-form-box h1 {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+            line-height: 1;
+        }
+
+        .auth-form-box .form-sub {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        /* Two-column form grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 20px;
+        }
+
+        .form-grid .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* Input Styling */
+        .form-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-main);
+            margin-bottom: 7px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: "Outfit", sans-serif;
+            color: var(--text-main);
+            background: #fff;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(239, 54, 54, 0.08);
+        }
+
+        .form-group input::placeholder {
+            color: #bbb;
+        }
+
+        .form-group .input-icon {
+            position: absolute;
+            right: 14px;
+            top: 39px;
+            color: #ccc;
+            font-size: 13px;
+        }
+
+        .error-message {
+            font-size: 11px;
+            color: var(--accent-color);
+            margin-top: 4px;
+            display: block;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: "Outfit", sans-serif;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(239, 54, 54, 0.3);
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background: #222;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+
+        .auth-switch {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 20px;
+        }
+
+        .auth-switch a {
+            color: var(--accent-color);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .auth-switch a:hover { opacity: 0.8; }
+
+        .form-section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #bbb;
+            margin: 20px 0 14px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 900px) {
+            .auth-panel-left { display: none; }
+            .auth-panel-right { padding: 40px 25px; }
+            .form-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="auth-page">
+    <!-- Left brand panel -->
+    <div class="auth-panel-left">
+        <div class="auth-brand">
+            <a href="index.html"><img src="img/logo.png" class="logo" alt="MARS Logo"></a>
+        </div>
+
+        <div class="auth-quote">
+            <h2>Join the<br><span>MARS</span> family.</h2>
+            <p>Create your free account and unlock exclusive deals, fast checkout, and order tracking.</p>
+        </div>
+
+        <div class="auth-steps">
+            <div class="auth-step">
+                <div class="step-num">1</div>
+                <div class="step-text">Fill in your details below</div>
+            </div>
+            <div class="auth-step">
+                <div class="step-num">2</div>
+                <div class="step-text">Get instant access to your account</div>
+            </div>
+            <div class="auth-step">
+                <div class="step-num">3</div>
+                <div class="step-text">Shop exclusive member deals</div>
+            </div>
+        </div>
+
+        <p class="auth-footer-text">&copy; 2025 MARS. All rights reserved.</p>
+    </div>
+
+    <!-- Right form panel -->
+    <div class="auth-panel-right">
+        <div class="auth-form-box">
+            <p class="form-eyebrow">New Member</p>
+            <h1>Create Account</h1>
+            <p class="form-sub">Fill in your details to get started. It only takes a minute.</p>
+
+            <form onsubmit="return validateForm()" action="index.html" method="post">
+                <div class="form-grid">
+                    <div class="form-section-label">Personal Info</div>
+
+                    <div class="form-group">
+                        <label for="fname">Full Name</label>
+                        <input type="text" id="fname" name="fname" placeholder="John Doe" required>
+                        <i class="fas fa-user input-icon"></i>
+                        <span id="blankMsg" class="error-message"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="custid">Customer ID</label>
+                        <input type="text" id="custid" name="custid" placeholder="e.g. MARS-0042" required>
+                        <i class="fas fa-id-badge input-icon"></i>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                        <i class="fas fa-envelope input-icon"></i>
+                        <span id="emailError" class="error-message"></span>
+                    </div>
+
+                    <div class="form-section-label">Delivery Address</div>
+
+                    <div class="form-group">
+                        <label for="street">Street</label>
+                        <input type="text" id="street" name="street" placeholder="123 El Tahrir St." required>
+                        <i class="fas fa-road input-icon"></i>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" placeholder="Cairo" required>
+                        <i class="fas fa-city input-icon"></i>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="building">Building / Apt Number</label>
+                        <input type="text" id="building" name="building" placeholder="Building 7, Apt 3" required>
+                        <i class="fas fa-building input-icon"></i>
+                    </div>
+
+                    <div class="form-section-label">Security</div>
+
+                    <div class="form-group">
+                        <label for="pw1">Password</label>
+                        <input type="password" id="pw1" name="password" placeholder="••••••••" required>
+                        <i class="fas fa-lock input-icon"></i>
+                        <span id="message1" class="error-message"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pw2">Confirm Password</label>
+                        <input type="password" id="pw2" name="password2" placeholder="••••••••" required>
+                        <i class="fas fa-lock input-icon"></i>
+                        <span id="confirmPasswordError" class="error-message"></span>
+                    </div>
+
+                    <div class="form-group full-width" style="margin-top:8px;">
+                        <button type="submit" class="btn-submit">Create My Account →</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="auth-switch">
+                Already have an account? <a href="signin.html">Sign in here</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script src="checker.js"></script>
+</body>
+</html>

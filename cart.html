@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart — MARS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <style>
+        /* ---- Cart Page Specific Styles ---- */
+        .cart-page {
+            min-height: 70vh;
+            padding: 50px 80px;
+            background-color: var(--bg-alt);
+        }
+
+        .cart-page h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .cart-page .cart-subtitle {
+            color: var(--text-light);
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .cart-layout {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        /* --- Items Panel --- */
+        .cart-items-panel {
+            flex: 1;
+            min-width: 300px;
+            background: var(--bg-color);
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        .cart-items-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 40px;
+            padding: 16px 24px;
+            background: var(--primary-color);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .cart-items {
+            padding: 0 24px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 40px;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            gap: 10px;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: left;
+        }
+
+        .cart-item-info img {
+            width: 65px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .cart-item-info .item-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .cart-item-price {
+            font-size: 14px;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            width: 28px;
+            height: 28px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-alt);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+        }
+
+        .qty-btn:hover {
+            background: var(--accent-color);
+            color: #fff;
+            border-color: var(--accent-color);
+        }
+
+        .qty-count {
+            font-weight: 700;
+            font-size: 15px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .cart-item-subtotal {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .cart-item-remove {
+            text-align: center;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #ccc;
+            font-size: 16px;
+            transition: color var(--transition);
+            padding: 5px;
+        }
+
+        .remove-btn:hover {
+            color: var(--accent-color);
+        }
+
+        .cart-empty {
+            padding: 60px 24px;
+            text-align: center;
+            color: var(--text-light);
+        }
+        .cart-empty i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+        .cart-empty p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .cart-empty a {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--accent-color);
+            color: #fff;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: all var(--transition);
+        }
+        .cart-empty a:hover {
+            background: var(--primary-color);
+        }
+
+        /* --- Summary Panel --- */
+        .cart-summary-panel {
+            width: 320px;
+            background: var(--bg-color);
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            padding: 30px;
+            position: sticky;
+            top: 110px;
+        }
+
+        .cart-summary-panel h3 {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 12px;
+        }
+
+        .summary-row.total {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary-color);
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+            margin-top: 5px;
+            margin-bottom: 25px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all var(--transition);
+            box-shadow: 0 5px 15px rgba(239, 54, 54, 0.3);
+        }
+
+        .checkout-btn:hover {
+            background: var(--primary-color);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
+        }
+
+        .continue-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: var(--text-light);
+            font-size: 13px;
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .continue-link:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 900px) {
+            .cart-page { padding: 30px 20px; }
+            .cart-layout { flex-direction: column; }
+            .cart-summary-panel { width: 100%; }
+            .cart-items-header { display: none; }
+            .cart-item { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <section id="header">
+        <a href="index.html" class="logo-link"><img src="img/logo.png" width="90" class="logo" alt="MARS Logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="men.html">MEN</a></li>
+                <li><a href="women.html">WOMEN</a></li>
+                <li id="lg-bag"><a class="active" href="cart.html"><img src="img/shopping-bag-3049.png" width="25" alt="Cart"></a></li>
+                <div id="close" onclick="toggleMenu()">
+                    <i class="fas fa-times"></i>
+                </div>
+                <div id="Account">
+                    <ul>
+                        <li><a href="createNEW.html">Create An Account</a></li>
+                        <li><a href="signin.html">Sign In</a></li>
+                    </ul>
+                </div>
+            </ul>
+        </div>
+        <div id="mobil">
+            <a href="cart.html"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+            <i id="bar" class="fas fa-outdent" onclick="toggleMenu()"></i>
+        </div>
+    </section>
+
+    <main class="cart-page">
+        <h1>Your Cart</h1>
+        <p class="cart-subtitle">Review your selected items</p>
+
+        <div class="cart-layout">
+            <!-- Items panel -->
+            <div class="cart-items-panel">
+                <div class="cart-items-header">
+                    <span>Product</span>
+                    <span style="text-align:center;">Price</span>
+                    <span style="text-align:center;">Quantity</span>
+                    <span style="text-align:center;">Subtotal</span>
+                    <span></span>
+                </div>
+                <div class="cart-items">
+                    <!-- dynamically rendered by script.js -->
+                </div>
+            </div>
+
+            <!-- Summary panel -->
+            <div class="cart-summary-panel">
+                <h3>Order Summary</h3>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">EGP 0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span style="color:#2ecc71; font-weight:600;">FREE</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span>EGP <span id="total">0.00</span></span>
+                </div>
+                <button class="checkout-btn" id="checkout">Proceed to Checkout →</button>
+                <a href="index.html" class="continue-link">← Continue Shopping</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Wire up checkout button
+        document.getElementById('checkout').addEventListener('click', () => {
+            const items = CartManager.getItems();
+            if(items.length === 0) {
+                alert('Your cart is empty!');
+            } else {
+                alert('Checkout coming soon! 🛒\nTotal: EGP ' + CartManager.getTotal().toFixed(2));
+            }
+        });
+    </script>
+</body>
+</html>

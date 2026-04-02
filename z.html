@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MARS: MEN SECTION </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+</head>
+
+<body>
+    <script src="script.js"></script>
+ 
+<script>// Script for managing cart actions
+  let cart = []; // Array to hold cart items
+  
+  document.addEventListener("DOMContentLoaded", () => {
+      // Add event listeners for Add to Cart buttons
+      document.querySelectorAll(".add-to-cart").forEach(button => {
+          button.addEventListener("click", () => {
+              const productId = button.getAttribute("data-id");
+              addToCart(productId);
+          });
+      });
+  
+      // Add event listeners for Delete from Cart buttons
+      document.querySelectorAll(".delete-from-cart").forEach(button => {
+          button.addEventListener("click", () => {
+              const productId = button.getAttribute("data-id");
+              removeFromCart(productId);
+          });
+      });
+  });
+  
+  function addToCart(productId) {
+      if (!cart.includes(productId)) {
+          cart.push(productId);
+          console.log(`Product ${productId} added to cart. Current cart:`, cart);
+          alert(`Product ${productId} added to cart!`);
+      } else {
+          alert(`Product ${productId} is already in the cart!`);
+      }
+  }
+  
+  function removeFromCart(productId) {
+      const index = cart.indexOf(productId);
+      if (index > -1) {
+          cart.splice(index, 1);
+          console.log(`Product ${productId} removed from cart. Current cart:`, cart);
+          alert(`Product ${productId} removed from cart!`);
+      } else {
+          alert(`Product ${productId} is not in the cart!`);
+      }
+  }
+  </script>
+
+
+    <section id="header">
+    
+        <a href="index.html" class="logo-link"><img src="img/logo.png" width="90" class="logo" alt=""></a>
+        
+        <div>
+            <ul id="navbar">
+    
+                <li><a href="index.html">HOME</a></li>
+                
+                <li><a class="active" href="men.html">MEN</a></li>
+                <li><a href="women.html">WOMEN</a></li>
+                <div class="shopping">
+                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                    <span class="quantity">0</span>
+                </div>
+                
+                <div id="Account">
+                    <ul>
+                        <li><a href="createNEW.html">Create An Account</a></li>
+                        <li><a href="signin.html">Sign In</a></li>
+                    </ul>
+                </div> 
+    
+            </ul>
+        </div>
+        
+        <div id="mobil">
+            <a href="cart.html"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+            <i id="bar" class="fas fa-outdent" onclick="toggleMenu()"></i>
+          </div>
+        
+       </section>
+   
+   <section id="page-header">
+      
+    <h2>#stayhome</h2>
+    
+    <p>SAVE TO MORE THAN 20%</p>
+    
+   </section>
+
+   <div class="pro">
+    <img src="img/Products/p1/EID-10723afd15da64c41d027590fb6d72f6b807c161.jpg" width="200" alt="">
+    <div class="des">
+        <span>MARS</span>
+        <h5>Slim Fit Fine-knit polo-neck jumper</h5>
+        <h4>EGP 1499.00</h4>
+        <button class="add-to-cart" data-id="1">Add to Cart</button>
+        <button class="delete-from-cart" data-id="1">Delete from Cart</button>
+    </div>
+</div>
+
+    
+
+ <section id="pagination" class="section-p1">
+    <a href="#">1</a>
+    <a href="#">2</a>
+    <a href="#"><i class="fas fa-long-arrow-alt-right    "></i></a>
+ </section>
+ <hr>
+ <footer class="section-p1">
+    <div class="footer-col">
+        <img class="logo" src="img/logo.png" width="65" alt="Company Logo">
+       
+    </div>
+
+    <div class="footer-col">
+        <h4>About Us</h4>
+        <ul>
+            <li><a href="about.html">Who We Are</a></li>
+            <li><a href="contact.html">Contact Information</a></li>
+            <li><a href="#">Shipping & Delivery</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-col">
+        <h4>Customer Service</h4>
+        <ul>
+            <li><a href="signin.html">Login to Account</a></li>
+            <li><a href="cart.html">Shopping Cart</a></li>
+            <li><a href="#">Wishlist</a></li>
+            <li><a href="#">Order Tracking</a></li>
+        </ul>
+    </div>
+</footer>
+
+
+ 
+</body>
+</html>

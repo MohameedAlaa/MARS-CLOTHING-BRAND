@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In — MARS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <style>
+        body { padding-top: 0 !important; background: #fff; }
+
+        .auth-page {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ---- Left Panel ---- */
+        .auth-panel-left {
+            width: 42%;
+            background: var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-panel-left::before {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            opacity: 0.08;
+        }
+
+        .auth-panel-left::after {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 280px;
+            height: 280px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            opacity: 0.06;
+        }
+
+        .auth-brand {
+            position: relative;
+            z-index: 2;
+        }
+
+        .auth-brand .logo {
+            width: 80px;
+        }
+
+        .auth-quote {
+            position: relative;
+            z-index: 2;
+        }
+
+        .auth-quote h2 {
+            color: #fff;
+            font-size: 38px;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .auth-quote h2 span {
+            color: var(--accent-color);
+        }
+
+        .auth-quote p {
+            color: rgba(255,255,255,0.5);
+            font-size: 15px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .auth-footer-text {
+            color: rgba(255,255,255,0.25);
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ---- Right Panel ---- */
+        .auth-panel-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 80px;
+            background: #fafafa;
+        }
+
+        .auth-form-box {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .auth-form-box .form-eyebrow {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .auth-form-box h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+            line-height: 1;
+        }
+
+        .auth-form-box .form-sub {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 36px;
+        }
+
+        /* Input Styling */
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: "Outfit", sans-serif;
+            color: var(--text-main);
+            background: #fff;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(239, 54, 54, 0.08);
+        }
+
+        .form-group input::placeholder {
+            color: #bbb;
+        }
+
+        .form-group .input-icon {
+            position: absolute;
+            right: 15px;
+            top: 41px;
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        .error-message {
+            font-size: 12px;
+            color: var(--accent-color);
+            margin-top: 5px;
+            display: block;
+        }
+
+        .forgot-link {
+            text-align: right;
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+
+        .forgot-link a {
+            font-size: 13px;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .forgot-link a:hover {
+            color: var(--accent-color);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: "Outfit", sans-serif;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(239, 54, 54, 0.3);
+            margin-top: 8px;
+        }
+
+        .btn-submit:hover {
+            background: #222;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 28px 0;
+            color: #ccc;
+            font-size: 13px;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        .auth-switch {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 24px;
+        }
+
+        .auth-switch a {
+            color: var(--accent-color);
+            font-weight: 700;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .auth-switch a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .auth-panel-left { display: none; }
+            .auth-panel-right { padding: 50px 30px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="auth-page">
+    <!-- Left brand panel -->
+    <div class="auth-panel-left">
+        <div class="auth-brand">
+            <a href="index.html"><img src="img/logo.png" class="logo" alt="MARS Logo"></a>
+        </div>
+
+        <div class="auth-quote">
+            <h2>Dress bold.<br>Live <span>fearless.</span></h2>
+            <p>Sign in to access your orders, wishlist, and exclusive member-only deals from MARS.</p>
+        </div>
+
+        <p class="auth-footer-text">&copy; 2025 MARS. All rights reserved.</p>
+    </div>
+
+    <!-- Right form panel -->
+    <div class="auth-panel-right">
+        <div class="auth-form-box">
+            <p class="form-eyebrow">Welcome Back</p>
+            <h1>Sign In</h1>
+            <p class="form-sub">Enter your credentials to access your account.</p>
+
+            <form onsubmit="return validateForm()" action="index.html" method="post">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                    <i class="fas fa-envelope input-icon"></i>
+                    <span id="emailError" class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="pswd1">Password</label>
+                    <input type="password" id="pswd1" name="password" placeholder="••••••••" required>
+                    <i class="fas fa-lock input-icon"></i>
+                    <span id="message1" class="error-message"></span>
+                </div>
+
+                <div class="forgot-link">
+                    <a href="#">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="btn-submit">Sign In →</button>
+            </form>
+
+            <div class="auth-divider">or</div>
+
+            <div class="auth-switch">
+                Don't have an account? <a href="createNEW.html">Create one free</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script src="checker.js"></script>
+</body>
+</html>
